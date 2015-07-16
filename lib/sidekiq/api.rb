@@ -311,6 +311,8 @@ module Sidekiq
                    else
                     job_class
                    end
+                  when "BaseJob::BaseJobWrapper"
+                   @item['wrapped'] || args[0]['job_class']
                  else
                    klass
                  end
@@ -331,6 +333,8 @@ module Sidekiq
                   else
                    job_args
                   end
+                when "BaseJob::BaseJobWrapper"
+                  args[0]["arguments"]
                 else
                   args
                 end
